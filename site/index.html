@@ -19,7 +19,7 @@
                 @foreach(var task in Model.Tasks){
                     <tr>
                         <td>@task.Id</td>
-                        <td>@task.Title</td>
+                        <td><a href="task.html?id=@task.Id">@task.Title</a></td>
                         <td>@task.Performer</td>
                         <td>@task.CreatedDate</td>
                         <td>@task.Status</td>

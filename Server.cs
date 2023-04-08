@@ -130,6 +130,7 @@ namespace exam_6_aruuke_maratova
         {
             string html = "";
             string layoutPath = _siteDirectory + "/layout.html";
+            var query = context.Request.QueryString;
             string filePath = _siteDirectory + filename;
             var razorService = Engine.Razor;
             if (!razorService.IsTemplateCached("layout", null))
@@ -143,8 +144,14 @@ namespace exam_6_aruuke_maratova
             Console.WriteLine(DateTime.Now.ToString());
 
             List<Task> tasks;
+            Task task = new Task();
             tasks = JsonSerializer.Deserialize<List<Task>>(File.ReadAllText("../../../tasks.json"));
             var method = context.Request.HttpMethod;
+            if(query.HasKeys())
+            {
+                int id = Convert.ToInt32(query.Get("id"));
+                task = tasks.Find( x => x.Id == id );
+            }
             if (method == "POST" && filePath == "../../../site/index.html")
             {
                 byte[] buffer = new byte[64];
@@ -160,7 +167,8 @@ namespace exam_6_aruuke_maratova
             }
             html = razorService.Run(filename, null, new
             {
-                Tasks = tasks
+                Tasks = tasks,
+                Task = task
             });
             return html;
         }
