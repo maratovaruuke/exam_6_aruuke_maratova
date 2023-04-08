@@ -14,8 +14,8 @@
     "Description": "Нужно купить продукты",
     "Performer": "Асанов Асан",
     "CreatedDate": "сб 08.04.23 23:46:36",
-    "FinishedDate": null,
-    "Status": "new"
+    "FinishedDate": "вс 09.04.23 2:18:30",
+    "Status": "done"
   },
   {
     "Id": 3,
@@ -23,42 +23,15 @@
     "Description": "Премьера нового фильма, нужно обязательно сходить",
     "Performer": "Маратова Арууке",
     "CreatedDate": "сб 08.04.23 23:46:36",
-    "FinishedDate": null,
-    "Status": "new"
-  },
-  {
-    "Id": 4,
-    "Title": "Приготовить ужин",
-    "Description": "Приготовить ужин",
-    "Performer": "Маратова Арууке",
-    "CreatedDate": "сб 08.04.23 23:46:36",
-    "FinishedDate": null,
-    "Status": "new"
+    "FinishedDate": "вс 09.04.23 2:18:29",
+    "Status": "done"
   },
   {
     "Id": 5,
-    "Title": "dd",
-    "Description": "d",
-    "Performer": "dd",
-    "CreatedDate": "вс 09.04.23 1:24:48",
-    "FinishedDate": null,
-    "Status": "new"
-  },
-  {
-    "Id": 6,
-    "Title": "test",
-    "Description": "test",
-    "Performer": "ddd",
-    "CreatedDate": "вс 09.04.23 1:51:43",
-    "FinishedDate": null,
-    "Status": "new"
-  },
-  {
-    "Id": 7,
-    "Title": "ss",
-    "Description": "ss",
-    "Performer": "ss",
-    "CreatedDate": "вс 09.04.23 1:51:50",
+    "Title": "ff",
+    "Description": "ff",
+    "Performer": "ff",
+    "CreatedDate": "вс 09.04.23 2:18:38",
     "FinishedDate": null,
     "Status": "new"
   }

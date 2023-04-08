@@ -24,10 +24,18 @@
         </table>
     </div>
     <div class="col">
-        <div class="d-grid gap-2 d-md-block">
-            <button class="btn btn-warning" type="button">Выполнить</button>
-            <button class="btn btn-danger" type="button">Удалить</button>
-          </div>
+        @if(@Model.Task.Status == "done"){
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-danger" type="button"><a href="index.html?delete=@Model.Task.Id">Удалить</a></button>
+              </div>
+        }
+        else {
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-warning" type="button"><a href="index.html?done=@Model.Task.Id">Выполнить</a></button>
+                <button class="btn btn-danger" type="button"><a href="index.html?delete=@Model.Task.Id">Удалить</a></button>
+              </div>
+        }
+     
     </div>
     <div class="row">
         <h4 class="text-center">Описание задачи</h4>

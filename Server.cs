@@ -19,6 +19,12 @@ namespace exam_6_aruuke_maratova
         private string _siteDirectory;
         private HttpListener _listener;
         private int _port;
+        JsonSerializerOptions options = new JsonSerializerOptions()
+        {
+            AllowTrailingCommas = true,
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+            WriteIndented = true
+        };
         public Server(string path, int port)
         {
             Initialize(path, port);
@@ -151,6 +157,24 @@ namespace exam_6_aruuke_maratova
             {
                 int id = Convert.ToInt32(query.Get("id"));
                 task = tasks.Find( x => x.Id == id );
+                int deleteId = Convert.ToInt32(query.Get("delete"));
+                tasks = tasks.Where( x => x.Id != deleteId ).ToList();
+                File.WriteAllText("../../../tasks.json", JsonSerializer.Serialize(tasks, options));
+                tasks = JsonSerializer.Deserialize<List<Task>>(File.ReadAllText("../../../tasks.json"));
+
+                int doneId = Convert.ToInt32(query.Get("done"));
+                Task taskDone = tasks.Find(x => x.Id == doneId);
+                if (taskDone != null)
+                {
+                    taskDone.Status = "done";
+                    taskDone.FinishedDate = DateTime.Now.ToString();
+                    int index = tasks.FindIndex( x => x.Id == doneId );
+                    tasks[index] = taskDone;
+                    File.WriteAllText("../../../tasks.json", JsonSerializer.Serialize(tasks, options));
+                    tasks = JsonSerializer.Deserialize<List<Task>>(File.ReadAllText("../../../tasks.json"));
+                }
+        
+
             }
             if (method == "POST" && filePath == "../../../site/index.html")
             {
@@ -175,12 +199,7 @@ namespace exam_6_aruuke_maratova
 
         private void CreateTask(string data, List<Task> tasks)
         {
-            JsonSerializerOptions options = new JsonSerializerOptions()
-            {
-                AllowTrailingCommas = true,
-                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
-                WriteIndented = true
-            };
+       
             Console.WriteLine($"{data}");
             string titleString = data.Split("&")[0];
             string performerString = data.Split("&")[1];

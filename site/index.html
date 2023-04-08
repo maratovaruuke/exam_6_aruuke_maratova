@@ -24,10 +24,18 @@
                         <td>@task.CreatedDate</td>
                         <td>@task.Status</td>
                         <td>
-                            <div class="d-grid gap-2 d-md-block">
-                                <button class="btn btn-warning" type="button">Выполнить</button>
-                                <button class="btn btn-danger" type="button">Удалить</button>
-                              </div>
+                            @if(@task.Status == "done"){
+                                <div class="d-grid gap-2 d-md-block">
+                                    <button class="btn btn-danger" type="button"><a href="index.html?delete=@task.Id">Удалить</a></button>
+                                  </div>
+                            }
+                            else {
+                                <div class="d-grid gap-2 d-md-block">
+                                    <button class="btn btn-warning" type="button"><a href="index.html?done=@task.Id">Выполнить</a></button>
+                                    <button class="btn btn-danger" type="button"><a href="index.html?delete=@task.Id">Удалить</a></button>
+                                  </div>
+                            }
+                          
                         </td>
                     </tr>
                 }
