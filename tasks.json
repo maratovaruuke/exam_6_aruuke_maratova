@@ -1,0 +1,38 @@
+[
+  {
+    "Id": 1,
+    "Title": "Сделать домашку",
+    "Description": "Сделать домашку по теме ООП",
+    "Performer": "Маратова Арууке",
+    "CreatedDate": "04/08/2023 16:01:00",
+    "FinishedDate": null,
+    "Status": "new"
+  },
+  {
+    "Id": 2,
+    "Title": "Сходить в магазин",
+    "Description": "Нужно купить продукты",
+    "Performer": "Асанов Асан",
+    "CreatedDate": "04/09/2023 16:01:00",
+    "FinishedDate": null,
+    "Status": "new"
+  },
+  {
+    "Id": 3,
+    "Title": "Сходить в кино",
+    "Description": "Премьера нового фильма, нужно обязательно сходить",
+    "Performer": "Маратова Арууке",
+    "CreatedDate": "04/09/2023 16:01:00",
+    "FinishedDate": null,
+    "Status": "new"
+  },
+  {
+    "Id": 4,
+    "Title": "Приготовить ужин",
+    "Description": "Приготовить ужин",
+    "Performer": "Маратова Арууке",
+    "CreatedDate": "04/09/2023 16:01:00",
+    "FinishedDate": null,
+    "Status": "new"
+  }
+]
