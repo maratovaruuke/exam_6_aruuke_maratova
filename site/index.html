@@ -50,18 +50,18 @@
     </div>
     <div class="col-4 mt-3">
         <h4 class="text-center">Добавить новую</h4>
-        <form class="row flex-column justify-content-center align-items-center">
+        <form action="http://localhost:8888/index.html" method="post" class="row flex-column justify-content-center align-items-center">
             <div class="mb-3">
                 <label for="title" class="form-label">Заголовок</label>
-                <input type="text" class="form-control" id="title" placeholder="Введите заголовок">
+                <input type="text" class="form-control" id="title" name="title" placeholder="Введите заголовок">
             </div>
             <div class="mb-3">
                 <label for="performer" class="form-label">Имя исполнителя</label>
-                <input type="text" class="form-control" id="performer" placeholder="Введите имя исполнителя">
+                <input type="text" class="form-control" id="performer" name="performer" placeholder="Введите имя исполнителя">
             </div>
             <div class="mb-3">
                 <label for="description" class="form-label">Описание</label>
-                <textarea class="form-control" id="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
               </div>
             <div class="col-auto mt-3">
               <button type="submit" class="btn btn-success mb-3">Добавить</button>

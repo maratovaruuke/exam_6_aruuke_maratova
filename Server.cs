@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
+using System.Text.Unicode;
 using System.Threading.Tasks;
 
 
@@ -140,12 +142,48 @@ namespace exam_6_aruuke_maratova
             string json = File.ReadAllText("../../../tasks.json");
             Console.WriteLine(DateTime.Now.ToString());
 
-            List<Task> tasks = JsonSerializer.Deserialize<List<Task>>(json);
+            List<Task> tasks;
+            tasks = JsonSerializer.Deserialize<List<Task>>(File.ReadAllText("../../../tasks.json"));
+            var method = context.Request.HttpMethod;
+            if (method == "POST" && filePath == "../../../site/index.html")
+            {
+                byte[] buffer = new byte[64];
+                StringBuilder builder = new StringBuilder();
+                int bytes = 0;
+                
+                bytes = context.Request.InputStream.Read(buffer, 0, buffer.Length);
+                builder.Append(System.Text.Encoding.ASCII.GetString(buffer,0, bytes));
+                string result = Uri.UnescapeDataString(builder.ToString());
+
+                CreateTask(result, tasks);
+                tasks = JsonSerializer.Deserialize<List<Task>>(File.ReadAllText("../../../tasks.json"));
+            }
             html = razorService.Run(filename, null, new
             {
                 Tasks = tasks
             });
             return html;
+        }
+
+        private void CreateTask(string data, List<Task> tasks)
+        {
+            JsonSerializerOptions options = new JsonSerializerOptions()
+            {
+                AllowTrailingCommas = true,
+                Encoder = JavaScriptEncoder.Create(UnicodeRanges.All),
+                WriteIndented = true
+            };
+            Console.WriteLine($"{data}");
+            string titleString = data.Split("&")[0];
+            string performerString = data.Split("&")[1];
+            string descriptionString = data.Split("&")[2];
+            if(titleString.Split("=")[1] != "" && performerString.Split("=")[1] != "" && descriptionString.Split("=")[1] != "")
+            {
+                Task task = new Task(tasks.Count + 1, titleString.Split("=")[1], performerString.Split("=")[1], descriptionString.Split("=")[1]);
+                tasks.Add(task);
+                File.WriteAllText("../../../tasks.json", JsonSerializer.Serialize(tasks, options));
+            }
+
         }
     }
 }
