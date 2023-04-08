@@ -1,0 +1,40 @@
+@{
+    Layout = "layout";
+}
+
+@if(@Model.Task != null) {
+    <h4 class="text-center">Задача # @Model.Task.Id</h4>
+<div class="row mt-3">
+    <div class="col">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td><b>Исполнитель задачи:</b></td>
+                    <td>@Model.Task.Performer</td>
+                </tr>
+                <tr>
+                    <td><b>Дата создания:</b></td>
+                    <td>@Model.Task.CreatedDate</td>
+                </tr>
+                <tr>
+                    <td><b>Дата выполнения:</b></td>
+                    <td>@Model.Task.FinishedDate</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-warning" type="button">Выполнить</button>
+            <button class="btn btn-danger" type="button">Удалить</button>
+          </div>
+    </div>
+    <div class="row">
+        <h4 class="text-center">Описание задачи</h4>
+        <p>@Model.Task.Description</p>
+    </div>
+</div>
+}
+else {
+    <h4 class="text-center">Нет такой записи</h4>
+}
